@@ -7,6 +7,7 @@
 #include <QNetworkReply>
 #include <QByteArray>
 #include "filedownloader.h"
+#include <QTextCodec>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

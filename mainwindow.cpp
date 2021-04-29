@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 
@@ -24,6 +24,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::loadText() {
-    ui->textBrowser->setPlainText(fd->downloadedData());
+    QTextCodec *tc = QTextCodec::codecForName("GBK");
+    QString str = tc -> toUnicode(fd->downloadedData());
+    ui->textBrowser->setPlainText(str);
     fd->deleteLater();
 }
