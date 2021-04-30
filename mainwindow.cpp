@@ -1,9 +1,9 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-QString xend = "</br>";
+QString xend = "<br />";
 QString dend = "</div>";
-QString xl = "，。“”？";
+QString xl = "，。“”？：！…‘’~—*（）《》【】·；、_";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), fd(nullptr) {
@@ -35,10 +35,10 @@ QString MainWindow::Translation(QString str) {
     int index1 = str.indexOf("<h1>") + 4;
     int index2 = str.indexOf("</h1>");
     s += str.mid(index1, index2 - index1);
-    s += '\n';
+    s += '\n';  s += '\n';
     int it = str.indexOf("<div id=\"content\">") + 18;
     while(!dcheck(it, str)) {
-        if(str[it] >= 0x4E00 && str[it] <= 0x9FA5)
+        if((str[it] >= 0x4E00 && str[it] <= 0x9FA5) || bcheck(str[it]))
             s += str[it];
         if(xcheck(it, str)) s += '\n';
         it ++;
@@ -46,8 +46,14 @@ QString MainWindow::Translation(QString str) {
     return s;
 }
 
+bool MainWindow::bcheck(QCharRef a) {
+    for(int i = 0; i < 23; i ++)
+        if(a == xl[i])  return 1;
+    return 0;
+}
+
 bool MainWindow::xcheck(int i, QString &str) {
-    for(int it = 0; it < 5; it ++)
+    for(int it = 0; it < 6; it ++)
         if(str[i + it] != xend[it])   return 0;
     return 1;
 }

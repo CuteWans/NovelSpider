@@ -22,6 +22,7 @@ public:
     QString Translation(QString str);
     bool dcheck(int it, QString &str);
     bool xcheck(int it, QString &str);
+    bool bcheck(QCharRef a);
     ~MainWindow();
 
 private:
