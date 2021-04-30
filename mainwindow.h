@@ -21,10 +21,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     QString Translation(QString str);
+    void Getpreurl(QString &str);
+    void Getlasurl(QString &str);
     bool dcheck(int it, QString &str);
     bool xcheck(int it, QString &str);
     bool bcheck(QCharRef a);
-    void url_change();
     ~MainWindow();
 
 private:

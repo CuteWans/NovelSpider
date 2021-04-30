@@ -1,9 +1,12 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDebug>
 
 QString xend = "<br />";
 QString dend = "</div>";
 QString xl = "，。“”？：！…‘’~—*（）《》【】·；、_";
+QString pre = "上一章";
+QString las = "下一章";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), fd(nullptr) {
@@ -13,19 +16,51 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::Getessay_las);
 }
 
-void MainWindow::Getessay_pre() { tag =-1; url_change(); }
-void MainWindow::Getessay_las() { tag = 1; url_change(); }
+void MainWindow::Getessay_pre() {
+    QTextCodec *tc = QTextCodec::codecForName("GBK");
+    QString str = tc->toUnicode(fd->downloadedData());
+    Getpreurl(str);
+    str = "https://www.hongyeshuzhai.com/" + str;
+    ui->textEdit->setText(str);
+    Getessay();
+}
 
-void MainWindow::url_change() {
+void MainWindow::Getpreurl(QString &str) {
+    int pos = str.indexOf(pre);
+    str.truncate(pos);
+    str = str.right(35);
+    int start = str.indexOf("/");
+    int end = str.length() - 2;
+    str = str.mid(start, end - start);
+}
+
+void MainWindow::Getessay_las() {
+    QTextCodec *tc = QTextCodec::codecForName("GBK");
+    QString str = tc->toUnicode(fd->downloadedData());
+    Getlasurl(str);
+    str = "https://www.hongyeshuzhai.com/" + str;
+    ui->textEdit->setText(str);
+    Getessay();
+}
+
+void MainWindow::Getlasurl(QString &str) {
+    int pos = str.indexOf(las);
+    str.truncate(pos);
+    str = str.right(35);
+    int start = str.indexOf("/");
+    int end = str.length() - 2;
+    str = str.mid(start, end - start);
+}
+
+/*void MainWindow::url_change() {
     url_str = ui->textEdit->toPlainText();
     QString str_page = url_str.right(13);
     str_page.chop(5);
     int page = str_page.toInt() + tag;
     QString str_tmp = QString::number(page) + ".html";
     ui->textEdit->setText(url_str.replace(44, 13, str_tmp));
-    //ui->textEdit->toPlainText().replace(33, 13, str_tmp);
     Getessay();
-}
+}*/
 
 void MainWindow::Getessay() {
     url_str = ui->textEdit->toPlainText();
