@@ -9,10 +9,26 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), fd(nullptr) {
     ui->setupUi(this);
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::Getessay);
+    connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::Getessay_pre);
+    connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::Getessay_las);
+}
+
+void MainWindow::Getessay_pre() { tag =-1; url_change(); }
+void MainWindow::Getessay_las() { tag = 1; url_change(); }
+
+void MainWindow::url_change() {
+    url_str = ui->textEdit->toPlainText();
+    QString str_page = url_str.right(13);
+    str_page.chop(5);
+    int page = str_page.toInt() + tag;
+    QString str_tmp = QString::number(page) + ".html";
+    ui->textEdit->setText(url_str.replace(44, 13, str_tmp));
+    //ui->textEdit->toPlainText().replace(33, 13, str_tmp);
+    Getessay();
 }
 
 void MainWindow::Getessay() {
-    const QString url_str = ui->textEdit->toPlainText();
+    url_str = ui->textEdit->toPlainText();
     QUrl url(url_str);
     if(fd != nullptr)   delete fd;
     fd = new FileDownloader(url, this);
