@@ -17,10 +17,16 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     QString url_str;
+    QString page;
+    QString name;
     int tag = 0;
 public:
     MainWindow(QWidget *parent = nullptr);
-    QString Translation(QString str);
+    QString Translation_text(QString str);
+    QString Translation_book(QString str);
+    QString Translation_chapter(QString str);
+    QString number_Transfer_BigChinese(double Fnumber);
+    void find_essay_page();
     void Getpreurl(QString &str);
     void Getlasurl(QString &str);
     bool dcheck(int it, QString &str);
@@ -31,11 +37,15 @@ public:
 private:
     Ui::MainWindow *ui;
     FileDownloader* fd;
+    FileDownloader* fd_booklist;
+    FileDownloader* fd_bookmenu;
 
 public slots:
     void Getessay();
     void Getessay_pre();
     void Getessay_las();
     void loadText();
+    void loadText_booklist();
+    void loadText_bookmenu();
 };
 #endif // MAINWINDOW_H

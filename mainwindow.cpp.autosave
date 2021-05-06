@@ -71,7 +71,6 @@ void MainWindow::find_essay_page() {
     connect(fd_booklist, SIGNAL (downloaded()), this, SLOT (loadText_booklist(name, page)));
 }
 
-//小说大全页面查找指定书目
 void MainWindow::loadText_booklist() {
     QTextCodec *tc = QTextCodec::codecForName("GBK");
     QString str = tc->toUnicode(fd_booklist->downloadedData());
@@ -90,7 +89,6 @@ QString MainWindow::Translation_book(QString str) {
     return s;
 }
 
-//指定小说页面查找指定章节
 void MainWindow::loadText_bookmenu() {
     QTextCodec *tc = QTextCodec::codecForName("GBK");
     QString str = tc->toUnicode(fd_bookmenu->downloadedData());
@@ -114,7 +112,6 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-//分析文章正文
 void MainWindow::loadText() {
     QTextCodec *tc = QTextCodec::codecForName("GBK");
     QString str = tc->toUnicode(fd->downloadedData());
