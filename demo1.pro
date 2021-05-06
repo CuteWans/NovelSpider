@@ -11,14 +11,17 @@ CONFIG += c++11
 
 SOURCES += \
     filedownloader.cpp \
+    find_page.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     filedownloader.h \
+    find_page.h \
     mainwindow.h
 
 FORMS += \
+    find_page.ui \
     mainwindow.ui
 
 # Default rules for deployment.
