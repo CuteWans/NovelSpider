@@ -68,7 +68,7 @@ void MainWindow::find_essay_page() {
     QUrl url("https://www.hongyeshuzhai.com/xiaoshuodaquan/");
     if(fd_booklist != nullptr)   delete fd_booklist;
     fd_booklist = new FileDownloader(url, this);
-    connect(fd_booklist, SIGNAL (downloaded()), this, SLOT (loadText_booklist(name, page)));
+    connect(fd_booklist, &FileDownloader::downloaded, this, &MainWindow::loadText_booklist);
 }
 
 //小说大全页面查找指定书目
@@ -79,7 +79,7 @@ void MainWindow::loadText_booklist() {
     QUrl url(str_bookmenu);
     if(fd_bookmenu != nullptr)   delete fd_bookmenu;
     fd_bookmenu = new FileDownloader(url, this);
-    connect(fd_bookmenu, SIGNAL (downloaded()), this, SLOT (loadText_bookmenu(page)));
+    connect(fd_bookmenu, &FileDownloader::downloaded, this, &MainWindow::loadText_bookmenu);
 }
 
 QString MainWindow::Translation_book(QString str) {
