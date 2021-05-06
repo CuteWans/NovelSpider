@@ -1,4 +1,4 @@
-﻿#include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
 
@@ -9,11 +9,22 @@ QString pre = "上一章";
 QString las = "下一章";
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), fd_booklist(nullptr), fd_bookmenu(nullptr), fd(nullptr) {
+    : QMainWindow(parent), ui(new Ui::MainWindow), fd(nullptr), fd_booklist(nullptr), fd_bookmenu(nullptr), menu(new QString [10005][2]) {
     ui->setupUi(this);
+    tot = 0;    page = 1;
     connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::Getessay);
-    connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::Getessay);
+    connect(ui->pushButton_4, &QPushButton::clicked, this, &MainWindow::Getessay_page);
+    connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::Getessay_las);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::Getessay_pre);
+}
+
+void MainWindow::Getessay_page() {
+    QString page_str = ui->textEdit_2->toPlainText();
+    page = page_str.toInt();
+    QUrl url(menu[page][0]);
+    if(fd != nullptr)   delete fd;
+    fd = new FileDownloader(url, this);
+    connect(fd, SIGNAL (downloaded()), this, SLOT (loadText()));
 }
 
 void MainWindow::Getessay_pre() {
@@ -58,9 +69,6 @@ void MainWindow::Getlasurl(QString &str) {
 
 void MainWindow::Getessay() {
     name = ui->textEdit->toPlainText();
-    QString page_str = ui->textEdit_2->toPlainText();
-    double page_tmp = page_str.toDouble();
-    page = number_Transfer_BigChinese(page_tmp);
     find_essay_page();
 }
 
@@ -68,7 +76,7 @@ void MainWindow::find_essay_page() {
     QUrl url("https://www.hongyeshuzhai.com/xiaoshuodaquan/");
     if(fd_booklist != nullptr)   delete fd_booklist;
     fd_booklist = new FileDownloader(url, this);
-    connect(fd_booklist, SIGNAL (downloaded()), this, SLOT (loadText_booklist(name, page)));
+    connect(fd_booklist, &FileDownloader::downloaded, this, &MainWindow::loadText_booklist);
 }
 
 //小说大全页面查找指定书目
@@ -79,7 +87,7 @@ void MainWindow::loadText_booklist() {
     QUrl url(str_bookmenu);
     if(fd_bookmenu != nullptr)   delete fd_bookmenu;
     fd_bookmenu = new FileDownloader(url, this);
-    connect(fd_bookmenu, SIGNAL (downloaded()), this, SLOT (loadText_bookmenu(page)));
+    connect(fd_bookmenu, &FileDownloader::downloaded, this, &MainWindow::loadText_bookmenu);
 }
 
 QString MainWindow::Translation_book(QString str) {
@@ -94,20 +102,25 @@ QString MainWindow::Translation_book(QString str) {
 void MainWindow::loadText_bookmenu() {
     QTextCodec *tc = QTextCodec::codecForName("GBK");
     QString str = tc->toUnicode(fd_bookmenu->downloadedData());
-    QString str_chapter = Translation_chapter(str);
+    Translation_chapter(str);
+    QString str_chapter = menu[page][0];
     QUrl url(str_chapter);
     if(fd != nullptr)   delete fd;
     fd = new FileDownloader(url, this);
     connect(fd, SIGNAL (downloaded()), this, SLOT (loadText()));
 }
 
-QString MainWindow::Translation_chapter(QString str) {
+void MainWindow::Translation_chapter(QString str) {
     QString s;
-    int index2 = str.indexOf(page) - 3;
-    int index1 = index2 - 28;//////网址位数不确定
-    s = str.mid(index1, 28);
-    s = "https://www.hongyeshuzhai.com/" + s;
-    return s;
+    int index1 = str.indexOf("<dt>");
+    int index2 = str.indexOf("<dt>",index1 + 4);
+    while((index2 = str.indexOf("<dd>", index2 + 4)) > 0) {
+        int index3 = str.indexOf("/", index2);
+        menu[++tot][0] = "https://www.hongyeshuzhai.com" + str.mid(index3, 28);
+        int index4 = str.indexOf(">", index3) + 1;
+        int index5 = str.indexOf("<", index4);
+        menu[tot][1] = str.mid(index4, index5 - index4);
+    }
 }
 
 MainWindow::~MainWindow() {
@@ -154,87 +167,4 @@ bool MainWindow::dcheck(int i, QString &str) {
     for(int it = 0; it < 6; it ++)
         if(str[i + it] != dend[it])   return 0;
     return 1;
-}
-
-QString MainWindow::number_Transfer_BigChinese(double Fnumber)
-{
-
-    if(qAbs(Fnumber)<0.01)   //保留2位小数时，近似看作零的情况
-        return "零";
-
-
-    //判断正负号
-    QString numberSign;//存储符号
-    if(Fnumber<0)
-        numberSign = "（负数）";
-   //将数据的绝对值 转换成字符串，如-58 转成 “58.00”
-   QString number = QString::number(qAbs(Fnumber),'f',2);//qAbs绝对值 ，保留两位小数
-   QString Left_of_Point;//整数部分
-   int length =number.length()-3;//整数部分的长度，（精确度为2，去除小数和小数点）
-   if(length>12)
-   {
-        //qDebug()<<"输入的数值超过范围！"
-        return "输入的数值超过范围！";
-   }
-
-   QStringList numerical_unit   =   {"","拾","佰","仟","万","拾", "佰", "仟", "亿", "拾", "佰", "仟"};
-   QStringList numerical_value  =   {"零","壹","贰","叁","肆","伍","陆","柒","捌","玖"};
-
-   //数数整数低位多少个连零
-   int counter_0=0;
-   for(int i =length-1;i>=0;i--)
-   {
-       if((number[i].toLatin1()-'0' )==0) //从个位开始，向高位走
-           counter_0++;
-       else
-           break;
-
-   }
-   if(length==1 && counter_0==1) //0.x
-       counter_0=0; //不进行过滤
-
-   //1400  0.2
-
-   for(int i=0,flag=1;i<length-counter_0;i++)
-   {
-        //5     8       1    2   3
-        //伍 拾 捌       壹佰 贰拾 叁
-       if((number[i].toLatin1()-'0')==0)
-       {
-           if((flag!=0 && (length-1-i)%4 != 0) || length ==1) //flag！=0  表示前一个数值 不为0
-           Left_of_Point+="零"; //后面不用添加 单位
-           if((length-1-i)%4 == 0) //如果0处于分段处，后面需添加单位
-           Left_of_Point+=numerical_unit[length-1-i];//添加数值单位
-
-           flag =0; //标记
-
-       }
-       else
-       {
-        flag =1;
-        Left_of_Point+=numerical_value[number[i].toLatin1()-'0']; //'5'-'0'==5
-        Left_of_Point+=numerical_unit[length-1-i];//添加数值单位
-
-       }
-   }
-    //QString Right_of_Point;//小数点右侧，小数部分(保留两位)  xxxx.yy
-    int totalLength = number.length();
-    if(number[totalLength-2]=='0'&&number[totalLength-1]=='0')
-    {
-        QString Bigcn=numberSign+Left_of_Point+"吨";
-        return Bigcn;
-    }
-    else if(number[totalLength-2]!='0'&&number[totalLength-1]=='0')
-    {
-        QString Bigcn=numberSign+Left_of_Point+"点"+numerical_value[number[totalLength-2].toLatin1()-'0']+"吨";
-        return Bigcn;
-    }
-    else
-    {
-        QString Bigcn=numberSign+Left_of_Point+"点"+numerical_value[number[totalLength-2].toLatin1()-'0']+numerical_value[number[totalLength-1].toLatin1()-'0']+"吨";
-        return Bigcn;
-    }
-
-
-    return "异常情况";
 }

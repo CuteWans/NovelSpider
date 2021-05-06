@@ -17,15 +17,15 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     QString url_str;
-    QString page;
+    int page;
     QString name;
-    int tag = 0;
+    QString (*menu)[2];
+    int tot;
 public:
     MainWindow(QWidget *parent = nullptr);
     QString Translation_text(QString str);
     QString Translation_book(QString str);
-    QString Translation_chapter(QString str);
-    QString number_Transfer_BigChinese(double Fnumber);
+    void Translation_chapter(QString str);
     void find_essay_page();
     void Getpreurl(QString &str);
     void Getlasurl(QString &str);
@@ -44,6 +44,7 @@ public slots:
     void Getessay();
     void Getessay_pre();
     void Getessay_las();
+    void Getessay_page();
     void loadText();
     void loadText_booklist();
     void loadText_bookmenu();
