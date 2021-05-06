@@ -6,32 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>505</width>
-    <height>178</height>
+    <width>509</width>
+    <height>434</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-image:url(:/pic/cover__.png)</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>50</y>
+      <x>190</x>
+      <y>330</y>
       <width>111</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:url(&quot;&quot;)</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>50</y>
-      <width>61</width>
+      <x>60</x>
+      <y>330</y>
+      <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>输入书名</string>
@@ -40,11 +49,14 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>50</y>
-      <width>89</width>
+      <x>350</x>
+      <y>330</y>
+      <width>91</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>打开</string>
@@ -56,7 +68,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>505</width>
+     <width>509</width>
      <height>28</height>
     </rect>
    </property>
@@ -67,7 +79,6 @@
    </widget>
    <addaction name="menuNovelSpider"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

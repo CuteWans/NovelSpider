@@ -1,5 +1,6 @@
 #include "find_page.h"
 #include "ui_find_page.h"
+#include "mainwindow.h"
 #include <QDebug>
 
 QString xend = "<br />";
@@ -15,7 +16,14 @@ find_page::find_page(QWidget *parent, QString name_tmp)
     connect(ui->pushButton, &QPushButton::clicked, this, &find_page::Getessay_page);
     connect(ui->pushButton_3, &QPushButton::clicked, this, &find_page::Getessay_las);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &find_page::Getessay_pre);
+    connect(ui->pushButton_4, &QPushButton::clicked, this, &find_page::on_pushButton_clicked);
     Getessay();
+}
+
+void find_page::on_pushButton_clicked() {
+    MainWindow *hd = new MainWindow;
+    this->close();
+    hd->show();
 }
 
 void find_page::Getessay_page() {
