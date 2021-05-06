@@ -26,6 +26,7 @@ class find_page : public QMainWindow
     QString name;
     QString (*menu)[2];
     int tot;
+    bool flag;
 public:
     find_page(QWidget *parent = nullptr, QString name_tmp = "");
     QString Translation_text(QString str);

@@ -10,17 +10,23 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    fail_to_act.cpp \
+    fail_to_getpage.cpp \
     filedownloader.cpp \
     find_page.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    fail_to_act.h \
+    fail_to_getpage.h \
     filedownloader.h \
     find_page.h \
     mainwindow.h
 
 FORMS += \
+    fail_to_act.ui \
+    fail_to_getpage.ui \
     find_page.ui \
     mainwindow.ui
 

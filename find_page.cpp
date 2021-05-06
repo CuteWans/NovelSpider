@@ -1,6 +1,8 @@
 #include "find_page.h"
 #include "ui_find_page.h"
 #include "mainwindow.h"
+#include "fail_to_act.h"
+#include "fail_to_getpage.h"
 #include <QDebug>
 
 QString xend = "<br />";
@@ -21,14 +23,22 @@ find_page::find_page(QWidget *parent, QString name_tmp)
 }
 
 void find_page::on_pushButton_clicked() {
+    //delete[] menu;
     MainWindow *hd = new MainWindow;
     this->close();
     hd->show();
 }
 
 void find_page::Getessay_page() {
+    flag = 0;
     QString page_str = ui->textEdit->toPlainText();
     page = page_str.toInt();
+    if(page > tot || page < 1) {
+        Fail_to_getpage* hd_page = new Fail_to_getpage(this);
+        hd_page->show();
+        flag = 1;
+        return ;
+    }
     QUrl url(menu[page][0]);
     if(fd != nullptr)   delete fd;
     fd = new FileDownloader(url, this);
@@ -36,9 +46,11 @@ void find_page::Getessay_page() {
 }
 
 void find_page::Getessay_pre() {
+    flag = 0;
     QTextCodec *tc = QTextCodec::codecForName("GBK");
     QString str = tc->toUnicode(fd->downloadedData());
     Getpreurl(str);
+    if(flag)    return ;
     str = "https://www.hongyeshuzhai.com/" + str;
     QUrl url(str);
     if(fd != nullptr)   delete fd;
@@ -48,6 +60,12 @@ void find_page::Getessay_pre() {
 
 void find_page::Getpreurl(QString &str) {
     int pos = str.indexOf(pre);
+    if(str[pos - 3] != 'l') {
+        Fail_to_getpage* hd_page = new Fail_to_getpage(this);
+        hd_page->show();
+        flag = 1;
+        return ;
+    }
     str.truncate(pos);
     str = str.right(35);
     int start = str.indexOf("/");
@@ -56,9 +74,11 @@ void find_page::Getpreurl(QString &str) {
 }
 
 void find_page::Getessay_las() {
+    flag = 0;
     QTextCodec *tc = QTextCodec::codecForName("GBK");
     QString str = tc->toUnicode(fd->downloadedData());
     Getlasurl(str);
+    if(flag)    return ;
     str = "https://www.hongyeshuzhai.com/" + str;
     QUrl url(str);
     if(fd != nullptr)   delete fd;
@@ -68,6 +88,12 @@ void find_page::Getessay_las() {
 
 void find_page::Getlasurl(QString &str) {
     int pos = str.indexOf(las);
+    if(str[pos - 3] != 'l') {
+        Fail_to_getpage* hd_page = new Fail_to_getpage(this);
+        hd_page->show();
+        flag = 1;
+        return ;
+    }
     str.truncate(pos);
     str = str.right(35);
     int start = str.indexOf("/");
@@ -94,6 +120,11 @@ void find_page::find_essay_page() {
 void find_page::loadText_booklist() {
     QTextCodec *tc = QTextCodec::codecForName("GBK");
     QString str = tc->toUnicode(fd_booklist->downloadedData());
+    if(str.indexOf(name) <= 0) {
+        Fail_to_act* hd_book = new Fail_to_act(this);
+        hd_book->show();
+        return ;
+    }
     QString str_bookmenu = Translation_book(str);
     QUrl url(str_bookmenu);
     if(fd_bookmenu != nullptr)   delete fd_bookmenu;
@@ -104,7 +135,7 @@ void find_page::loadText_booklist() {
 QString find_page::Translation_book(QString str) {
     QString s;
     int index2 = str.indexOf(name) - 2;
-    int index1 = index2 - 44;//////网址位数不确定
+    int index1 = index2 - 44;
     s = str.mid(index1, 44);
     return s;
 }
