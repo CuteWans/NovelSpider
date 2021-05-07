@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>974</width>
-    <height>953</height>
+    <width>931</width>
+    <height>1132</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,24 +17,30 @@
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>90</y>
       <width>891</width>
-      <height>801</height>
+      <height>1041</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image:url(&quot;&quot;)</string>
+     <string notr="true">background-image:url(:/pic/img-1620305930904f33138164c08c37468e6b15ad6be398c.jpg);
+</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>250</x>
       <y>30</y>
       <width>111</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">
@@ -44,7 +50,7 @@ background-image:url(&quot;&quot;);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>160</x>
       <y>30</y>
       <width>91</width>
       <height>41</height>
@@ -69,10 +75,10 @@ background-image:url(&quot;&quot;);</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>30</y>
-      <width>91</width>
-      <height>41</height>
+      <x>390</x>
+      <y>10</y>
+      <width>120</width>
+      <height>75</height>
      </rect>
     </property>
     <property name="font">
@@ -84,19 +90,19 @@ background-image:url(&quot;&quot;);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 192, 131, 255), stop:0.979381 rgba(235, 56, 33, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 0))</string>
+     <string notr="true">border-image:url(:/pic/222.jpg)</string>
     </property>
     <property name="text">
-     <string>跳转</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>30</y>
-      <width>111</width>
-      <height>41</height>
+      <x>30</x>
+      <y>10</y>
+      <width>120</width>
+      <height>75</height>
      </rect>
     </property>
     <property name="font">
@@ -109,19 +115,19 @@ background-image:url(&quot;&quot;);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(180, 98, 78, 177), stop:0.979381 rgba(235, 56, 33, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 0))</string>
+     <string notr="true">border-image:url(:/pic/444.jpg)</string>
     </property>
     <property name="text">
-     <string>上一章</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>30</y>
-      <width>101</width>
-      <height>41</height>
+      <x>550</x>
+      <y>10</y>
+      <width>120</width>
+      <height>75</height>
      </rect>
     </property>
     <property name="font">
@@ -134,19 +140,19 @@ background-image:url(&quot;&quot;);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 192, 131, 255), stop:0.979381 rgba(235, 56, 33, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 0))</string>
+     <string notr="true">border-image:url(:/pic/333.jpg)</string>
     </property>
     <property name="text">
-     <string>下一章</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>30</y>
-      <width>121</width>
-      <height>41</height>
+      <x>710</x>
+      <y>10</y>
+      <width>120</width>
+      <height>75</height>
      </rect>
     </property>
     <property name="font">
@@ -156,10 +162,10 @@ background-image:url(&quot;&quot;);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(180, 98, 78, 177), stop:0.979381 rgba(235, 56, 33, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 0))</string>
+     <string notr="true">border-image:url(:/pic/111.jpg)</string>
     </property>
     <property name="text">
-     <string>返回上级</string>
+     <string/>
     </property>
    </widget>
   </widget>
@@ -168,10 +174,16 @@ background-image:url(&quot;&quot;);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>974</width>
+     <width>931</width>
      <height>28</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>目录</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

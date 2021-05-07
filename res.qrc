@@ -1,5 +1,17 @@
 <RCC>
     <qresource prefix="/pic">
         <file>cover__.png</file>
+        <file>img-162030579979216e4a933ee008730b6bc4197556f2346.jpg</file>
+        <file>img-162030579738386c58c17355b94ae06e46df7b2948d52.jpg</file>
+        <file>img-16203057894316eae93c7afb0d884b986cca3ebf593c9.jpg</file>
+        <file>img-16203057839081b5eb0e66332c43d3a273d311ac5709a.jpg</file>
+        <file>img-1620305930904f33138164c08c37468e6b15ad6be398c.jpg</file>
+        <file>img-1620305795358fcd28fac6d1dc02c1ce7c5865e6e4116.jpg</file>
+        <file>img-1620305786911a7ed141c117d19a60a58d24b2e2acee6.jpg</file>
+        <file>555.jpg</file>
+        <file>444.jpg</file>
+        <file>333.jpg</file>
+        <file>222.jpg</file>
+        <file>111.jpg</file>
     </qresource>
 </RCC>
