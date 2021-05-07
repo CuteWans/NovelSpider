@@ -47,7 +47,7 @@ private:
     FileDownloader* fd_bookmenu;
 
 public slots:
-    void on_pushButton_clicked();
+    void on_pushButton_clicked_();
     void Getessay();
     void Getessay_pre();
     void Getessay_las();

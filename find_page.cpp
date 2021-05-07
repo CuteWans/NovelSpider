@@ -18,15 +18,13 @@ find_page::find_page(QWidget *parent, QString name_tmp)
     connect(ui->pushButton, &QPushButton::clicked, this, &find_page::Getessay_page);
     connect(ui->pushButton_3, &QPushButton::clicked, this, &find_page::Getessay_las);
     connect(ui->pushButton_2, &QPushButton::clicked, this, &find_page::Getessay_pre);
-    connect(ui->pushButton_4, &QPushButton::clicked, this, &find_page::on_pushButton_clicked);
+    connect(ui->pushButton_4, &QPushButton::clicked, this, &find_page::on_pushButton_clicked_);
     Getessay();
 }
 
-void find_page::on_pushButton_clicked() {
-    //delete[] menu;
-    MainWindow *hd = new MainWindow;
-    this->close();
-    hd->show();
+void find_page::on_pushButton_clicked_() {
+    parentWidget()->show();
+    close();
 }
 
 void find_page::Getessay_page() {
@@ -40,9 +38,9 @@ void find_page::Getessay_page() {
         return ;
     }
     QUrl url(menu[page][0]);
-    if(fd != nullptr)   delete fd;
+    if(fd != nullptr)   fd->deleteLater();
     fd = new FileDownloader(url, this);
-    connect(fd, SIGNAL (downloaded()), this, SLOT (loadText()));
+    connect(fd, &FileDownloader::downloaded, this, &find_page::loadText);
 }
 
 void find_page::Getessay_pre() {
@@ -51,11 +49,11 @@ void find_page::Getessay_pre() {
     QString str = tc->toUnicode(fd->downloadedData());
     Getpreurl(str);
     if(flag)    return ;
-    str = "https://www.hongyeshuzhai.com/" + str;
+    str = "https://www.hongyeshuzhai.com" + str;
     QUrl url(str);
-    if(fd != nullptr)   delete fd;
+    if(fd != nullptr)   fd->deleteLater();
     fd = new FileDownloader(url, this);
-    connect(fd, SIGNAL (downloaded()), this, SLOT (loadText()));
+    connect(fd, &FileDownloader::downloaded, this, &find_page::loadText);
 }
 
 void find_page::Getpreurl(QString &str) {
@@ -79,11 +77,11 @@ void find_page::Getessay_las() {
     QString str = tc->toUnicode(fd->downloadedData());
     Getlasurl(str);
     if(flag)    return ;
-    str = "https://www.hongyeshuzhai.com/" + str;
+    str = "https://www.hongyeshuzhai.com" + str;
     QUrl url(str);
-    if(fd != nullptr)   delete fd;
+    if(fd != nullptr)   fd->deleteLater();
     fd = new FileDownloader(url, this);
-    connect(fd, SIGNAL (downloaded()), this, SLOT (loadText()));
+    connect(fd, &FileDownloader::downloaded, this, &find_page::loadText);
 }
 
 void find_page::Getlasurl(QString &str) {
@@ -111,7 +109,7 @@ void find_page::Getessay() {
 
 void find_page::find_essay_page() {
     QUrl url("https://www.hongyeshuzhai.com/xiaoshuodaquan/");
-    if(fd_booklist != nullptr)   delete fd_booklist;
+    if(fd_booklist != nullptr)   fd_booklist->deleteLater();
     fd_booklist = new FileDownloader(url, this);
     connect(fd_booklist, &FileDownloader::downloaded, this, &find_page::loadText_booklist);
 }
@@ -127,7 +125,7 @@ void find_page::loadText_booklist() {
     }
     QString str_bookmenu = Translation_book(str);
     QUrl url(str_bookmenu);
-    if(fd_bookmenu != nullptr)   delete fd_bookmenu;
+    if(fd_bookmenu != nullptr)   fd_bookmenu->deleteLater();
     fd_bookmenu = new FileDownloader(url, this);
     connect(fd_bookmenu, &FileDownloader::downloaded, this, &find_page::loadText_bookmenu);
 }
@@ -147,9 +145,9 @@ void find_page::loadText_bookmenu() {
     Translation_chapter(str);
     QString str_chapter = menu[page][0];
     QUrl url(str_chapter);
-    if(fd != nullptr)   delete fd;
+    if(fd != nullptr)   fd->deleteLater();
     fd = new FileDownloader(url, this);
-    connect(fd, SIGNAL (downloaded()), this, SLOT (loadText()));
+    connect(fd, &FileDownloader::downloaded, this, &find_page::loadText);
 }
 
 void find_page::Translation_chapter(QString str) {
