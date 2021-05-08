@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>931</width>
-    <height>1132</height>
+    <width>711</width>
+    <height>1136</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,20 +18,25 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
-      <width>891</width>
-      <height>1041</height>
+      <y>100</y>
+      <width>671</width>
+      <height>981</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-image:url(:/pic/img-1620305930904f33138164c08c37468e6b15ad6be398c.jpg);
+     <string notr="true">border-image:url(:/pic/5.jpg)
 </string>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>240</x>
       <y>30</y>
       <width>111</width>
       <height>41</height>
@@ -50,7 +55,7 @@ background-image:url(&quot;&quot;);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>130</x>
       <y>30</y>
       <width>91</width>
       <height>41</height>
@@ -75,9 +80,9 @@ background-image:url(&quot;&quot;);</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>380</x>
       <y>10</y>
-      <width>120</width>
+      <width>75</width>
       <height>75</height>
      </rect>
     </property>
@@ -90,7 +95,7 @@ background-image:url(&quot;&quot;);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image:url(:/pic/222.jpg)</string>
+     <string notr="true">border-image:url(:/pic/3.jpg)</string>
     </property>
     <property name="text">
      <string/>
@@ -101,7 +106,7 @@ background-image:url(&quot;&quot;);</string>
      <rect>
       <x>30</x>
       <y>10</y>
-      <width>120</width>
+      <width>75</width>
       <height>75</height>
      </rect>
     </property>
@@ -115,7 +120,7 @@ background-image:url(&quot;&quot;);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image:url(:/pic/444.jpg)</string>
+     <string notr="true">border-image:url(:/pic/2.jpg)</string>
     </property>
     <property name="text">
      <string/>
@@ -124,9 +129,9 @@ background-image:url(&quot;&quot;);</string>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>490</x>
       <y>10</y>
-      <width>120</width>
+      <width>75</width>
       <height>75</height>
      </rect>
     </property>
@@ -140,7 +145,7 @@ background-image:url(&quot;&quot;);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image:url(:/pic/333.jpg)</string>
+     <string notr="true">border-image:url(:/pic/1.jpg)</string>
     </property>
     <property name="text">
      <string/>
@@ -149,9 +154,9 @@ background-image:url(&quot;&quot;);</string>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>600</x>
       <y>10</y>
-      <width>120</width>
+      <width>75</width>
       <height>75</height>
      </rect>
     </property>
@@ -162,7 +167,7 @@ background-image:url(&quot;&quot;);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image:url(:/pic/111.jpg)</string>
+     <string notr="true">border-image:url(:/pic/4.jpg)</string>
     </property>
     <property name="text">
      <string/>
@@ -174,7 +179,7 @@ background-image:url(&quot;&quot;);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>931</width>
+     <width>711</width>
      <height>28</height>
     </rect>
    </property>
