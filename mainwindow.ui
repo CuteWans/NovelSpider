@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>红叶Reader</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-image:url(:/pic/cover__.png)</string>
@@ -23,12 +23,12 @@
       <x>190</x>
       <y>320</y>
       <width>121</width>
-      <height>41</height>
+      <height>35</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>11</pointsize>
      </font>
     </property>
     <property name="styleSheet">
