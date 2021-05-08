@@ -4,6 +4,7 @@
 #include "fail_to_act.h"
 #include "fail_to_getpage.h"
 #include <QDebug>
+#include <QDesktopWidget>
 
 QString xend = "<br />";
 QString dend = "</div>";
@@ -42,6 +43,8 @@ void find_page::Getessay_page() {
     page = page_str.toInt();
     if(page > tot || page < 1) {
         Fail_to_getpage* hd_page = new Fail_to_getpage(this);
+        hd_page->setAttribute(Qt::WA_DeleteOnClose);
+        hd_page->move(this->geometry().center() - hd_page->rect().center());
         hd_page->show();
         flag = 1;
         return ;
@@ -69,6 +72,8 @@ void find_page::Getpreurl(QString &str) {
     int pos = str.indexOf(pre);
     if(str[pos - 3] != 'l') {
         Fail_to_getpage* hd_page = new Fail_to_getpage(this);
+        hd_page->setAttribute(Qt::WA_DeleteOnClose);
+        hd_page->move(this->geometry().center() - hd_page->rect().center());
         hd_page->show();
         flag = 1;
         return ;
@@ -97,6 +102,8 @@ void find_page::Getlasurl(QString &str) {
     int pos = str.indexOf(las);
     if(str[pos - 3] != 'l') {
         Fail_to_getpage* hd_page = new Fail_to_getpage(this);
+        hd_page->setAttribute(Qt::WA_DeleteOnClose);
+        hd_page->move(this->geometry().center() - hd_page->rect().center());
         hd_page->show();
         flag = 1;
         return ;
@@ -129,6 +136,8 @@ void find_page::loadText_booklist() {
     QString str = tc->toUnicode(fd_booklist->downloadedData());
     if(str.indexOf(name) <= 0) {
         Fail_to_act* hd_book = new Fail_to_act(this);
+        hd_book->setAttribute(Qt::WA_DeleteOnClose);
+        hd_book->move(this->geometry().center() - hd_book->rect().center());
         hd_book->show();
         return ;
     }
