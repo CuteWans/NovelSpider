@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow
     QString name;
 public:
     MainWindow(QWidget *parent = nullptr);
+    void keyPressEvent(QKeyEvent* event);
     ~MainWindow();
 
 private:

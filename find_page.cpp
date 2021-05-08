@@ -11,6 +11,15 @@ QString xl = "，。“”？：！…‘’~—*（）《》【】·；、_";
 QString pre = "上一章";
 QString las = "下一章";
 
+void find_page::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
+        Getessay_page();
+    }
+    if (event->key() == Qt::Key_Escape) {
+        on_pushButton_clicked_();
+    }
+}
+
 find_page::find_page(QWidget *parent, QString name_tmp)
     : QMainWindow(parent), ui(new Ui::find_page), fd(nullptr), fd_booklist(nullptr), fd_bookmenu(nullptr), menu(new QString [10005][2]) {
     ui->setupUi(this);
@@ -29,7 +38,7 @@ void find_page::on_pushButton_clicked_() {
 
 void find_page::Getessay_page() {
     flag = 0;
-    QString page_str = ui->textEdit->toPlainText();
+    QString page_str = ui->textEdit->text();
     page = page_str.toInt();
     if(page > tot || page < 1) {
         Fail_to_getpage* hd_page = new Fail_to_getpage(this);

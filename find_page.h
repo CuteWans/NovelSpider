@@ -13,6 +13,7 @@
 #include <QMainWindow>
 #include <QObject>
 #include <QWidget>
+#include <QKeyEvent>
 
 namespace Ui {
 class find_page;
@@ -38,6 +39,7 @@ public:
     bool dcheck(int it, QString &str);
     bool xcheck(int it, QString &str);
     bool bcheck(QCharRef a);
+    void keyPressEvent(QKeyEvent* event);
     ~find_page();
 
 private:

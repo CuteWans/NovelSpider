@@ -13,6 +13,7 @@ class Fail_to_act : public QMainWindow
 
 public:
     explicit Fail_to_act(QWidget *parent = nullptr);
+    void keyPressEvent(QKeyEvent* event);
     ~Fail_to_act();
 
 private:

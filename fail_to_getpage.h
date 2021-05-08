@@ -13,6 +13,7 @@ class Fail_to_getpage : public QMainWindow
 
 public:
     explicit Fail_to_getpage(QWidget *parent = nullptr);
+    void keyPressEvent(QKeyEvent* event);
     ~Fail_to_getpage();
 
 private:

@@ -4,6 +4,12 @@
 #include <QDebug>
 #include <QDesktopWidget>
 
+void MainWindow::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
+        Getessay();
+    }
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -11,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::Getessay() {
-    name = ui->textEdit->toPlainText();
+    name = ui->textEdit->text();
     find_page* hd = new find_page(this, name);
     hd->setAttribute(Qt::WA_DeleteOnClose);
     hd->move(this->geometry().center() - hd->rect().center());
