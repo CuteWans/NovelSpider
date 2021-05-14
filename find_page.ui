@@ -185,6 +185,25 @@ border-radius:35px;</string>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>700</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>目录</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
  </widget>
  <resources/>
  <connections/>

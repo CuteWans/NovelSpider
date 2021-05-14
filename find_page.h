@@ -14,6 +14,7 @@
 #include <QObject>
 #include <QWidget>
 #include <QKeyEvent>
+#include "caction.h"
 
 namespace Ui {
 class find_page;
