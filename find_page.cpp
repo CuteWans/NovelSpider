@@ -13,11 +13,11 @@ QString pre = "上一章";
 QString las = "下一章";
 
 void find_page::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
-        Getessay_page();
-    }
     if (event->key() == Qt::Key_Escape) {
         on_pushButton_clicked_();
+    }
+    if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
+        Getessay_page();
     }
 }
 
@@ -134,7 +134,7 @@ void find_page::find_essay_page() {
 void find_page::loadText_booklist() {
     QTextCodec *tc = QTextCodec::codecForName("GBK");
     QString str = tc->toUnicode(fd_booklist->downloadedData());
-    if(str.indexOf(name) <= 0) {
+    if(str.indexOf(name) <= 0 || name == "") {
         Fail_to_act* hd_book = new Fail_to_act(this);
         hd_book->setAttribute(Qt::WA_DeleteOnClose);
         hd_book->move(this->geometry().center() - hd_book->rect().center());
