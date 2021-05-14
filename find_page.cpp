@@ -5,6 +5,7 @@
 #include "fail_to_getpage.h"
 #include <QDebug>
 #include <QDesktopWidget>
+#include <QStyle>
 
 QString xend = "<br />";
 QString dend = "</div>";
@@ -24,6 +25,7 @@ void find_page::keyPressEvent(QKeyEvent *event) {
 find_page::find_page(QWidget *parent, QString name_tmp)
     : QMainWindow(parent), ui(new Ui::find_page), fd(nullptr), fd_booklist(nullptr), fd_bookmenu(nullptr), menu(new QString [10005][2]) {
     ui->setupUi(this);
+    ui->menu->setStyleSheet("background-image:url(:/pic/5.jpg)");
     tot = 0;    page = 1;   name = name_tmp;
     connect(ui->pushButton, &QPushButton::clicked, this, &find_page::Getessay_page);
     connect(ui->pushButton_3, &QPushButton::clicked, this, &find_page::Getessay_las);
@@ -172,13 +174,25 @@ void find_page::Translation_chapter(QString str) {
     QString s;
     int index1 = str.indexOf("<dt>");
     int index2 = str.indexOf("<dt>",index1 + 4);
+    CAction* ac;
+
     while((index2 = str.indexOf("<dd>", index2 + 4)) > 0) {
         int index3 = str.indexOf("/", index2);
         menu[++tot][0] = "https://www.hongyeshuzhai.com" + str.mid(index3, 28);
         int index4 = str.indexOf(">", index3) + 1;
         int index5 = str.indexOf("<", index4);
         menu[tot][1] = str.mid(index4, index5 - index4);
+
+        ac = new CAction(tot, menu[tot][1], ui->menu);
+        connect(ac, &CAction::clicked, this, [&](int tot) {
+            QUrl url(menu[tot][0]);
+            if(fd != nullptr)   fd->deleteLater();
+            fd = new FileDownloader(url, this);
+            connect(fd, &FileDownloader::downloaded, this, &find_page::loadText);
+        });
+        ui->menu->addAction(ac);
     }
+
 }
 
 //分析文章正文
