@@ -25,6 +25,7 @@ void find_page::keyPressEvent(QKeyEvent *event) {
 find_page::find_page(QWidget *parent, QString name_tmp)
     : QMainWindow(parent), ui(new Ui::find_page), fd(nullptr), fd_booklist(nullptr), fd_bookmenu(nullptr), menu(new QString [10005][2]) {
     ui->setupUi(this);
+    ui->menuBar->setStyleSheet("background-image:url()");
     ui->menu->setStyleSheet("background-image:url(:/pic/5.jpg)");
     tot = 0;    page = 1;   name = name_tmp;
     connect(ui->pushButton, &QPushButton::clicked, this, &find_page::Getessay_page);
